@@ -1,0 +1,10 @@
+#+title: Raspberry Pi board for SC-Sat1
+
+* What is it
+
+  This repository is software for the Raspberry Pi board of
+  SC-Sat1. SC-Sat1 is a 3U CubeSat that Space Cubics launches to
+  demonstrate SC-OBC in space.
+
+  #+CAPTION: RPi Board for SC-SAT1
+  [[./doc/images/sc-mpn-0029a.jpg]]
