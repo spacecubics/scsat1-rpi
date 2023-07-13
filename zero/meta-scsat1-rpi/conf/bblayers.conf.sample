@@ -8,4 +8,5 @@ BBFILES ?= ""
 BBLAYERS ?= " \
   ##OEROOT##/meta \
   ##OEROOT##/../meta-raspberrypi \
+  ##OEROOT##/../meta-scsat1-rpi \
   "
