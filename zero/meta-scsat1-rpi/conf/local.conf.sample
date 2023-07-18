@@ -1,4 +1,4 @@
-MACHINE = "raspberrypi0-wifi"
+MACHINE = "raspberrypi0-2w-64"
 DISTRO = "scsat1-rpi"
 PACKAGE_CLASSES = "package_rpm"
 USER_CLASSES = "buildstats"
