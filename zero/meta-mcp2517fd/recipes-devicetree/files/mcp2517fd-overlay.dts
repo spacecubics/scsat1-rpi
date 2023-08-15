@@ -1,0 +1,82 @@
+/*
+ * Copyright (c) 2023 KantaTamura <tkanta496@gmail.com>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
+/*
+ * Device tree overlay for mcp2517fd/can0 on spi0.0
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    /* enable spi for spi0.0 */
+    fragment@0 {
+        target = <&spi0>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+    /* disable spi-dev for spi0.0 */
+    fragment@1 {
+        target = <&spidev0>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+
+    /* the interrupt pin of mcp2517fd */
+    fragment@2 {
+        target = <&gpio>;
+        __overlay__ {
+            mcp2517fd_int_pin: mcp2517fd_int_pin {
+                brcm,pins = <25>;       // use GPIO25 for interrupt pin
+                brcm,function = <0>;    // BCM2835_FSEL_GPIO_IN
+            };
+        };
+    };
+
+    /* the clock/oscillator of mcp2517fd */
+    fragment@3 {
+        target-path = "/clocks";
+        __overlay__ {
+            /* external oscillator of mcp2517fd on SPI0.0 */
+            clk_mcp2517fd_osc: clk_mcp2517fd_osc {
+                compatible = "fixed-clock";
+                #clock-cells = <0>;
+                clock-frequency  = <20000000>;  // use 20MHz oscillator
+            };
+        };
+    };
+
+    /* the spi config of the can-controller itself binding everything together */
+    fragment@4 {
+        target = <&spi0>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            can0: mcp2517fd@0 {
+                reg = <0>;
+                compatible = "microchip,mcp2517fd";
+                pinctrl-names = "default";
+                pinctrl-0 = <&mcp2517fd_int_pin>;
+                spi-max-frequency = <20000000>;     // up to 20MHz SPI clock speed on mcp2517fd
+                interrupt-parent = <&gpio>;
+                interrupts = <25 8>;                // IRQ_TYPE_LEVEL_LOW : active low
+                clocks = <&clk_mcp2517fd_osc>;
+            };
+        };
+    };
+
+    __overrides__ {
+        oscillator = <&clk_mcp2517fd_osc>,"clock-frequency:0";
+        spimaxfrequency = <&can0>,"spi-max-frequency:0";
+        interrupt = <&mcp2517fd_int_pin>,"brcm,pins:0",<&can0>,"interrupts:0";
+    };
+};
