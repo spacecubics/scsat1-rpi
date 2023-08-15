@@ -9,4 +9,5 @@ BBLAYERS ?= " \
   ##OEROOT##/meta \
   ##OEROOT##/../meta-raspberrypi \
   ##OEROOT##/../meta-scsat1-rpi \
+  ##OEROOT##/../meta-mcp2517fd \
   "
