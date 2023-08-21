@@ -30,7 +30,7 @@ $ git clone https://github.com/spacecubics/scsat1-rpi
 $ cd scsat1-rpi/zero
 $ git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi
 $ git clone -b kirkstone git://git.yoctoproject.org/poky
-$ TEMPLATECONF=$(readlink -f ./meta-scsat-rpi/conf) source ./poky/oe-init-build-env
+$ TEMPLATECONF=$(readlink -f ./meta-scsat1-rpi/conf) source ./poky/oe-init-build-env
 $ bitbake core-image-minimal
 ```
 
