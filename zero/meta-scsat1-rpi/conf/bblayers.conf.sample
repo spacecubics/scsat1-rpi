@@ -13,4 +13,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-libcsp \
   ##OEROOT##/../meta-csp \
   ##OEROOT##/../meta-openembedded/meta-oe \
+  ##OEROOT##/../meta-arducam \
   "
