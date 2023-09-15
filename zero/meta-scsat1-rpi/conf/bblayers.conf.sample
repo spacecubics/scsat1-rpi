@@ -11,4 +11,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-scsat1-rpi \
   ##OEROOT##/../meta-mcp2517fd \
   ##OEROOT##/../meta-libcsp \
+  ##OEROOT##/../meta-openembedded/meta-oe \
   "

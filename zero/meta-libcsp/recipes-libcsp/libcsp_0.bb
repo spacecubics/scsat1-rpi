@@ -5,6 +5,8 @@ SRCREV = "${AUTOREV}"
 SRCBRANCH = "develop"
 SRC_URI = "git://github.com/libcsp/libcsp.git;protocol=https;branch=${SRCBRANCH};"
 
+DEPENDS += "libsocketcan"
+
 PACKAGES = "${PN} ${PN}-dbg ${PN}-dev"
 
 FILES:${PN}-dbg += "${libdir}/.debug"
@@ -13,7 +15,7 @@ FILES:${PN}-dev += "${includedir}/csp"
 
 S = "${WORKDIR}/git"
 
-inherit cmake
+inherit cmake pkgconfig
 
 do_install:append() {
     chmod 644 ${D}${libdir}/libcsp.so
