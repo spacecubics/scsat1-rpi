@@ -1,0 +1,19 @@
+
+# this template is filled-in by CMake `configure_file(... @ONLY)`
+# the `` are filled in by CMake configure_file(), 
+# from variables set in your CMakeLists.txt or by CMake itself
+#
+# Good tutoral for understanding .pc files: 
+# https://people.freedesktop.org/~dbn/pkg-config-guide.html
+
+prefix="/usr"
+exec_prefix="${prefix}"
+libdir="${prefix}/lib"
+includedir="${prefix}/include"
+
+Name: arducam_pivariety
+Description: Arducam pivariety camera library.
+URL: https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver
+Version: 1.0.6
+Cflags: -I"${includedir}"
+Libs: -L"${libdir}" -larducam_pivariety 
