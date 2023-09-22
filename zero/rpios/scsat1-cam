@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import socket
+
+# Set the UDP port number
+PORT = 12345
+
+# Create a socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind(('', PORT))  # Bind without specifying an IP address
+
+while True:
+    # Receive 1 byte of data
+    data, addr = sock.recvfrom(1)
+
+    # Send the received data back to the sender's address
+    sock.sendto(data, addr)
+
+# Close the socket. Since there is a closing program, it seems
+# unlikely that the ground station will be automatically closed
+sock.close()
