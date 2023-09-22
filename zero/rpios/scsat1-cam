@@ -13,8 +13,12 @@ while True:
     # Receive 1 byte of data
     data, addr = sock.recvfrom(1)
 
-    # Send the received data back to the sender's address
-    sock.sendto(data, addr)
+    # If received 'p', return 'p'
+    if data == 'p':
+        sock.sendto(data, addr)
+    # Send 'e' for everything else
+    else:
+        sock.sendto('e', addr)
 
 # Close the socket. Since there is a closing program, it seems
 # unlikely that the ground station will be automatically closed
