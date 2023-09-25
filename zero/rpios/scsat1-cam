@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import socket
+import capture
+import file
 
 # Set the UDP port number
 PORT = 12345
@@ -14,9 +16,18 @@ while True:
     data, addr = sock.recvfrom(1)
 
     # If received 'p', return 'p'
-    if data == 'p':
+    if data == b'p':
         sock.sendto(data, addr)
     # Send 'e' for everything else
+
+    elif data == b'c':
+        try:
+            capture.capture_dng_jpg(file.get_name())
+        except Exception as e:
+            sock.sendto(b'e', addr)
+            print("Capture Error")
+            print(e)
+        sock.sendto(b'c', addr)
     else:
         sock.sendto('e', addr)
 
