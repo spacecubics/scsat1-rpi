@@ -3,6 +3,7 @@
 import socket
 import capture
 import file
+import exifrw
 
 # Set the UDP port number
 PORT = 12345
@@ -28,6 +29,16 @@ while True:
             print("Capture Error")
             print(e)
         sock.sendto(b'c', addr)
+
+    # if received 'm', save metadata to file
+    elif data == b'm':
+        try:
+            exifrw.meta_save_directory()
+        except Exception as e:
+            sock.sendto(b'e', addr)
+            print('Save metadata Error')
+            print(e)
+        sock.sendto(b'm', addr)
 
     # Send 'e' for everything else
     else:

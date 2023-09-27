@@ -1,3 +1,4 @@
 *.dng
 *.jpg
 __pycache__
+*.txt
