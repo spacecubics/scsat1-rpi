@@ -18,8 +18,8 @@ while True:
     # If received 'p', return 'p'
     if data == b'p':
         sock.sendto(data, addr)
-    # Send 'e' for everything else
 
+    # if received 'c', capture dng and jpg and save to each directory
     elif data == b'c':
         try:
             capture.capture_dng_jpg(file.get_name())
@@ -28,8 +28,10 @@ while True:
             print("Capture Error")
             print(e)
         sock.sendto(b'c', addr)
+
+    # Send 'e' for everything else
     else:
-        sock.sendto('e', addr)
+        sock.sendto(b'e', addr)
 
 # Close the socket. Since there is a closing program, it seems
 # unlikely that the ground station will be automatically closed
