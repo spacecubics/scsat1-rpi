@@ -4,6 +4,7 @@ import socket
 import capture
 import file
 import exifrw
+import binarize
 
 # Set the UDP port number
 PORT = 12345
@@ -39,6 +40,16 @@ while True:
             print('Save metadata Error')
             print(e)
         sock.sendto(b'm', addr)
+
+    # Send 'b' to binarized image
+    elif data == b'b':
+        try:
+            file.loop_in_directory(binarize.binarize_xmp,'./ImageJPG')
+        except Exception as e:
+            sock.sendto(b'e', addr)
+            print("Binarize Error")
+            print(e)
+        sock.sendto(b'b', addr)
 
     # Send 'e' for everything else
     else:
