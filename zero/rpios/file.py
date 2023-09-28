@@ -31,7 +31,7 @@ def format_number():
 
     for num in only_jpg:
         os.remove(f"ImageJPG/image{num}.jpg")
-    
+
     for num in only_dng:
         os.remove(f"ImageDNG/image{num}.dng")
 
@@ -64,6 +64,32 @@ def delete_file(number:int):
         print(f"Error: {jpg_file} does not exist.")
     else:
         print(f"Error: Both {jpg_file} and {dng_file} do not exist.")
+
+
+def loop_in_directory(function, directory_path='./ImageJPG'):
+    """
+    Apply a given function to all .jpg files in the specified directory.
+
+    Args:
+    - function (function): The function to apply to each .jpg file.
+    - directory_path (str): Path to the directory containing .jpg files.
+    """
+    # List all files in the directory
+    file_list = os.listdir(directory_path)
+
+    # Filter out non-jpg files
+    jpg_files = [f for f in file_list if f.lower().endswith('.jpg')]
+
+    if not jpg_files:
+        print("No jpg images found in the directory.")
+        return
+
+    # Process each jpg file
+    for filename in jpg_files:
+        file_path = os.path.join(directory_path, filename)
+        function(file_path)
+
+
 
 if __name__ == "__main__":
     list_file()

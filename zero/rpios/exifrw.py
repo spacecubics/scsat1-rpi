@@ -3,7 +3,7 @@ import os
 import sys
 from io import StringIO
 
-IMG_PATH = "Product\ImageJPG\image1.jpg"
+IMG_PATH = "./ImageJPG/image1.jpg"
 
 
 def exif_read(path=""):
