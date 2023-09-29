@@ -5,6 +5,7 @@ import capture
 import file
 import exifrw
 import binarize
+import sobel
 
 # Set the UDP port number
 PORT = 12345
@@ -50,6 +51,16 @@ while True:
             print("Binarize Error")
             print(e)
         sock.sendto(b'b', addr)
+
+    # Send 's' for sobel filter
+    elif data ==b's':
+        try:
+            file.loop_in_directory(sobel.sobel_xmp,'./ImageJPG')
+        except Exception as e:
+            sock.sendto(b'e', addr)
+            print("Sobel Filtering Error")
+            print(e)
+        sock.sendto(b's', addr)
 
     # Send 'e' for everything else
     else:
