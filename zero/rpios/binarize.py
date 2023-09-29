@@ -6,7 +6,7 @@ import exifrw
 # Function to binarize each pixel in the image (white or black). It also calculates the number of white pixels.
 def binarize_pixels(file_path, threshold=30):
     with Image.open(file_path).convert("L") as img:
-        pixels = img.load()  # 	Load pixel data
+        pixels = img.load()  # Load pixel data
         white_pixels = 0
         width, height = img.size  # Load pixel data
         for x in range(width):
