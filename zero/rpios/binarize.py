@@ -3,26 +3,26 @@ import os
 import exifrw
 
 
-# 画像内の各ピクセルを二値化（白または黒）にする関数。白いピクセルの数も計算します。
+# Function to binarize each pixel in the image (white or black). It also calculates the number of white pixels.
 def binarize_pixels(file_path, threshold=30):
     with Image.open(file_path).convert("L") as img:
-        pixels = img.load()  # ピクセルデータをロード
+        pixels = img.load()  # 	Load pixel data
         white_pixels = 0
-        width, height = img.size  # 画像のサイズ
+        width, height = img.size  # Load pixel data
         for x in range(width):
             for y in range(height):
                 if pixels[x, y] <= threshold:
-                    pixels[x, y] = 0  # 黒にする
+                    pixels[x, y] = 0  # Make it black
                 else:
-                    pixels[x, y] = 255  # 白にする
-                    white_pixels += 1  # 白いピクセルの数をカウント
-        # 画像のファイルサイズを取得
-        total_pixels = width * height  # 全ピクセル数を計算
-        white_ratio = (white_pixels / total_pixels) * 100  # 白いピクセルの割合を計算
+                    pixels[x, y] = 255  # Make it white
+                white_pixels += 1  # Count the number of white pixels
+        # Get the image file size
+        total_pixels = width * height  # Calculate the total number of pixels
+        white_ratio = (white_pixels / total_pixels) * 100  # Calculate the proportion of white pixels
     return img, white_pixels, white_ratio
 
 
-# 白いピクセルの比率を計算する関数。
+# Function to get file size
 def get_file_size(img):
     file_size = os.path.getsize(img)
     return file_size
@@ -33,17 +33,17 @@ def save_image(img, path):
 
 
 def binarize_xmp(file_path='./ImageJPG/image1.jpg'):
-    # exifrw.pyのxmp_readを使って，全ての画像のxmpを読み込む
+    # Use xmp_read from exifrw.py to read the xmp of all images
     xmp_data = exifrw.xmp_get_dict(file_path)
-    # xmpの中に"BinalizedWhiteRate"タグがない画像を見つける
+    # Find images that do not have the "BinalizedWhiteRate" tag in xmp
     if "BinalizedWhiteRate" not in xmp_data:
-    # その画像をbinalize_pixelsで二値化し，calculate_white_ratioで白いピクセルの割合を計算
+        # Binarize that image with binarize_pixels and calculate the proportion of white pixels with calculate_white_ratio
         _, _, white_ratio = binarize_pixels(file_path)
-        # 白いピクセルの割合を"BinalizedWhiteRate"タグに書き込む
+        # Write the proportion of white pixels to the "BinalizedWhiteRate" tag
         exifrw.xmp_write(file_path, "BinalizedWhiteRate", str(white_ratio))
-        # 現在処理中のファイル名を表示
+        # Display the filename currently being processed
         print(f"Processing {file_path}...")
-        # 追加したタグを表示
+        # Display the added tag
         print(exifrw.xmp_get_dict(file_path))
     else:
         pass
