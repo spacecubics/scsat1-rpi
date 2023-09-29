@@ -50,8 +50,9 @@ def list_file():
         print(os.path.basename(f))
     print("\n")
 
+
 # Function to delete the specified .jpg and .dng image files by number
-def delete_file(number:int):
+def delete_file(number: int):
     jpg_file = f"ImageJPG/image{number}.jpg"
     dng_file = f"ImageDNG/image{number}.dng"
 
@@ -88,7 +89,6 @@ def loop_in_directory(function, directory_path='./ImageJPG'):
     for filename in jpg_files:
         file_path = os.path.join(directory_path, filename)
         function(file_path)
-
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import exifrw
 
+
 def sobel_variance(image_path):
     # Load the image
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)

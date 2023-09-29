@@ -45,7 +45,7 @@ while True:
     # Send 'b' to binarized image
     elif data == b'b':
         try:
-            file.loop_in_directory(binarize.binarize_xmp,'./ImageJPG')
+            file.loop_in_directory(binarize.binarize_xmp, './ImageJPG')
         except Exception as e:
             sock.sendto(b'e', addr)
             print("Binarize Error")
@@ -53,9 +53,9 @@ while True:
         sock.sendto(b'b', addr)
 
     # Send 's' for sobel filter
-    elif data ==b's':
+    elif data == b's':
         try:
-            file.loop_in_directory(sobel.sobel_xmp,'./ImageJPG')
+            file.loop_in_directory(sobel.sobel_xmp, './ImageJPG')
         except Exception as e:
             sock.sendto(b'e', addr)
             print("Sobel Filtering Error")

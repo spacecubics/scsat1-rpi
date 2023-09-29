@@ -33,7 +33,7 @@ def xmp_get_dict(path=""):
 
 
 def xmp_write(path="", tag="", data=""):
-    pyexiv2.registerNs("namespace for scsat1-rpi","sc1")
+    pyexiv2.registerNs("namespace for scsat1-rpi", "sc1")
     img = pyexiv2.Image(path)
     if tag == "":
         pass
@@ -60,6 +60,7 @@ def capture_output(func, *args, **kwargs):
     finally:
         sys.stdout = old_stdout
     return new_stdout.getvalue()
+
 
 def meta_save(image_path):
     """Reads metadata from the image and saves it to a .txt file."""
@@ -88,7 +89,6 @@ def meta_save_directory(directory_path="./ImageJPG"):
                 file_path = os.path.join(root, file)
                 meta_save(file_path)
     return f"Metadata saved for all .jpg files in {directory_path}"
-
 
 
 if __name__ == "__main__":
