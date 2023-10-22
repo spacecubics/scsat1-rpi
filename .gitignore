@@ -3,3 +3,4 @@
 /zero/build*
 /zero/poky/
 /zero/meta-raspberrypi/
+/zero/meta-openembedded/
