@@ -20,10 +20,6 @@ https://docs.yoctoproject.org/ref-manual/system-requirements.html#required-packa
 
 # :hammer: build
 
-> **Warning**
-> currently only works with GCC 12  
-> https://github.com/rpm-software-management/libdnf/issues/1558
-
 run in bash or zsh
 ```shell
 $ git clone https://github.com/spacecubics/scsat1-rpi
