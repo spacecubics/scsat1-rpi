@@ -1,0 +1,8 @@
+[Unit]
+Description=CSP Routing and execute Camera
+
+[Service]
+ExecStart=/usr/bin/csp_handler
+
+[Install]
+WantedBy=multi-user.target
