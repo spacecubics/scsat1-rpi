@@ -1,0 +1,14 @@
+[Match]
+Name=wlan*
+KernelCommandLine=!nfsroot
+
+[Network]
+DHCP=ipv4
+LinkLocalAddressing=fallback
+MulticastDNS=yes
+
+[DHCPv4]
+UseMTU=yes
+RouteMetric=10
+ClientIdentifier=mac
+MaxAttempts=1
