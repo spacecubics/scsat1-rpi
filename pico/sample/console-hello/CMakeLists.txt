@@ -8,6 +8,11 @@ if (USE_UART1)
     list(APPEND EXTRA_DTC_OVERLAY_FILE "uart1.overlay")
 endif()
 
+if (USE_USB)
+    list(APPEND EXTRA_DTC_OVERLAY_FILE "usb.overlay")
+    list(APPEND EXTRA_CONF_FILE "usb.conf")
+endif()
+
 if (ALLOW_DEBUG)
     list(APPEND EXTRA_CONF_FILE "debug.conf")
 endif()
