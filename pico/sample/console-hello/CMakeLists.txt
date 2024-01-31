@@ -4,11 +4,9 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(BOARD rpi_pico)
 
-if (USE_UART1)
+if (CONSOLE STREQUAL uart1)
     list(APPEND EXTRA_DTC_OVERLAY_FILE "uart1.overlay")
-endif()
-
-if (USE_USB)
+elseif(CONSOLE STREQUAL usb)
     list(APPEND EXTRA_DTC_OVERLAY_FILE "usb.overlay")
     list(APPEND EXTRA_CONF_FILE "usb.conf")
 endif()
