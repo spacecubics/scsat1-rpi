@@ -1,0 +1,10 @@
+sample:
+  name: console output sample
+tests:
+  sample.console-hello:
+    build_only: true
+    platform_allow:
+      - rpi_pico
+    tags:
+      - uart
+      - usb_device

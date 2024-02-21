@@ -1,0 +1,10 @@
+sample:
+  name: console echo server sample
+tests:
+  sample.console-echo:
+    build_only: true
+    platform_allow:
+      - rpi_pico
+    tags:
+      - uart
+      - usb_device
