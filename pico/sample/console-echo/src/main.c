@@ -69,21 +69,6 @@ void print_uart(char *buf)
 
 int main(void)
 {
-	/* enable only has DTR line e.g. USB */
-	if (DT_NODE_HAS_COMPAT(DT_CHOSEN(zephyr_console), zephyr_cdc_acm_uart)) {
-		uint32_t dtr = 0;
-		while (!dtr) {
-			int status = uart_line_ctrl_get(uart_dev, UART_LINE_CTRL_DTR, &dtr);
-			if (status != 0) {
-				/* if returing not 0 then "API is not enable" or
-				 * "this function is not implemented"
-				 */
-				LOG_ERR("Failed to get DTR : %s", strerror(errno));
-			}
-			k_sleep(K_MSEC(100));
-		}
-	}
-
 	if (!device_is_ready(uart_dev)) {
 		LOG_ERR("UART device not found!");
 		return 0;
