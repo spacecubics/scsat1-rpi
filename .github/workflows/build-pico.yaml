@@ -45,3 +45,7 @@ jobs:
       - name: Build
         run: |
           west build -b ${{ matrix.board }} scsat1-rpi/pico
+
+      - name: Check Sample
+        run: |
+          ./zephyr/scripts/twister --testsuite-root scsat1-rpi/pico/sample
