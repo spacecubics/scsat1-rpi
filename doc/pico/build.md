@@ -25,6 +25,13 @@ $ pip install -r zephyr/scripts/requirements.txt
 $ west build -b rpi_pico scsat1-rpi/pico
 ```
 
+## Build Options
+
+using `UART1` for console
+```
+$ rm -rf build && west build -b rpi_pico scsat1-rpi/pico -- -DCONSOLE=uart1
+```
+
 # :rocket: writing to Flash Memory
 
 > **Note**  
