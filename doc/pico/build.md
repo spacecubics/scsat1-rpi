@@ -30,7 +30,7 @@ $ west build -b rpi_pico scsat1-rpi/pico
 > **Note**  
 > Connect arduino nano and PC while holding down the boolsel switch on nano
 
-`***` : Arduino Nano device-name
+`***` : RaspberryPi Pico device-name
 
 ```shell
 $ west flash
