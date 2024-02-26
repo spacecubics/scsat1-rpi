@@ -1,4 +1,4 @@
-name: Build test for Pico
+name: Pico sample test by twister
 on:
   push:
   pull_request:
@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * 0' # Run it every Sunday 10am UTC
 
 jobs:
-  build-zephyr:
+  twister:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -14,8 +14,6 @@ jobs:
         board:
           - rpi_pico
         python-version:
-          - '3.9'
-          - '3.10'
           - '3.11'
         sdk-version:
           - '0.16.4'
@@ -42,6 +40,6 @@ jobs:
           toolchains: arm-zephyr-eabi
           sdk-version: ${{ matrix.sdk-version }}
 
-      - name: Build
+      - name: Check Sample
         run: |
-          west build -b ${{ matrix.board }} scsat1-rpi/pico
+          ./zephyr/scripts/twister --testsuite-root scsat1-rpi/pico/sample
