@@ -7,10 +7,14 @@
 #include <zephyr/kernel.h>
 #include <stdio.h>
 
+#include "scbus.h"
+
 int main(void)
 {
+	scbus_init();
+
 	while (true) {
-		k_sleep(K_SECONDS(1));
+		scbus_verify_sof_fn();
 	}
 
 	return 0;
