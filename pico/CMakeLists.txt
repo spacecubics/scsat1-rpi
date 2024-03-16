@@ -11,4 +11,7 @@ endif()
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(scsat1-rpi-pico)
 
-target_sources(app PRIVATE src/main.c)
+target_sources(app PRIVATE
+	src/main.c
+	src/temp.c
+)
