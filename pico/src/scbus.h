@@ -7,3 +7,4 @@
 #pragma once
 
 int scbus_init(void);
+void scbus_verify_sof_fn(void);
