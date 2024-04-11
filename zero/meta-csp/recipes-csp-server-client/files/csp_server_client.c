@@ -238,6 +238,7 @@ int main(int argc, char *argv[])
 				  error);
 			exit(1);
 		}
+		default_iface->addr = address;
 		default_iface->is_default = 1;
 	}
 #if (CSP_HAVE_LIBSOCKETCAN)
