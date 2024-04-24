@@ -1,0 +1,10 @@
+sample:
+  name: csp uart server sample
+tests:
+  sample.csp-server:
+    build_only: true
+    platform_allow:
+      - rpi_pico
+    tags:
+      - uart
+      - usb_device
