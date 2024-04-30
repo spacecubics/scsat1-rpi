@@ -8,7 +8,7 @@
 
 #define DEV_ADDR   (0x4e)
 #define START_ADDR (0x00)
-#define RESOLUTION (0.0625)
+#define RESOLUTION (0.0625f)
 #define BIT_SHIFT  (4)
 
 int get_temp(const struct device *dev, float *temp)
