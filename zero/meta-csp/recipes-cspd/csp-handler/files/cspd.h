@@ -7,13 +7,21 @@
 
 #define PORT_A 10 /* for csp_server_client */
 
-#ifndef ZERO_CSP_ADDR
-#define ZERO_CSP_ADDR 1
-#endif
+#ifndef MAIN_OBC_CAN_ADDR
+#define MAIN_OBC_CAN_ADDR 1
+#endif /* MAIN_OBC_CAN_ADDR */
 
-#ifndef PICO_CSP_ADDR
-#define PICO_CSP_ADDR 2
-#endif
+#ifndef RPI_ZERO_CAN_ADDR
+#define RPI_ZERO_CAN_ADDR 2
+#endif /* RPI_ZERO_CAN_ADDR */
+
+#ifndef RPI_ZERO_UART_ADDR
+#define RPI_ZERO_UART_ADDR 3
+#endif /* RPI_ZERO_UART_ADDR */
+
+#ifndef RPI_PICO_UART_ADDR
+#define RPI_PICO_UART_ADDR 4
+#endif /* RPI_PICO_UART_ADDR */
 
 /* handler.c */
 void *handle_csp_packet(void *param);
