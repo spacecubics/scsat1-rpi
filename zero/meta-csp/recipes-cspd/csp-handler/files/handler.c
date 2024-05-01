@@ -4,7 +4,7 @@
 
 void *handle_csp_packet(void *param)
 {
-	uint8_t address = ZERO_CSP_ADDR;
+	uint8_t address = RPI_ZERO_CAN_ADDR;
 
 	csp_iface_t *iface;
 	if ((iface = csp_can_socketcan_init("can0", address, 1000000, true)) == NULL) {
