@@ -2,9 +2,14 @@
 
 * What is it
 
-  This repository is software for the Raspberry Pi board of
-  SC-Sat1. SC-Sat1 is a 3U CubeSat that Space Cubics launches to
-  demonstrate SC-OBC in space.
+  This repository hosts software for the Raspberry Pi board of SC-Sat1.
+  As you can see from the picture, it has a Raspberry Pi Zero 2 W and
+  a Raspberry Pi Pico on it. Zero runs Yocto based Linux system. On
+  the other hand, Pico runs Zephyr RTOS.
 
   #+CAPTION: RPi Board for SC-SAT1
   [[./doc/images/sc-mpn-0029a.jpg]]
+
+  SC-Sat1 is a 3U CubeSat that Space Cubics launches to demonstrate
+  SC-OBC in space. The main flight software is at
+  https://github.com/spacecubics/scsat1-fsw.
