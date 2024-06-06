@@ -17,6 +17,8 @@ S = "${WORKDIR}/git"
 
 inherit cmake pkgconfig
 
+EXTRA_OECMAKE += "-DCSP_USE_RTABLE=ON"
+
 do_install:append() {
     chmod 644 ${D}${libdir}/libcsp.so
 }
