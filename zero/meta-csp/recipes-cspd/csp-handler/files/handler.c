@@ -4,17 +4,6 @@
 
 void *handle_csp_packet(void *param)
 {
-	uint8_t address = RPI_ZERO_CAN_ADDR;
-
-	csp_iface_t *iface;
-	if ((iface = csp_can_socketcan_init("can0", address, 1000000, true)) == NULL) {
-		fprintf(stderr, "can't initialize socketcan\n");
-		exit(-1);
-	}
-	iface->is_default = 1;
-
-	/* csp_iflist_print(); */
-
 	csp_socket_t sock = {0};
 	csp_bind(&sock, CSP_ANY);
 	csp_listen(&sock, 10);
