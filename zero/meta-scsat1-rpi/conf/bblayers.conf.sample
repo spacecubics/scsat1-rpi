@@ -15,4 +15,7 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-csp \
   ##OEROOT##/../meta-openembedded/meta-oe \
   ##OEROOT##/../meta-arducam \
+  ##OEROOT##/../meta-rauc \
+  ##OEROOT##/../meta-rauc-community/meta-rauc-raspberrypi \
+  ##OEROOT##/../meta-rauc-scsat1 \
   "
