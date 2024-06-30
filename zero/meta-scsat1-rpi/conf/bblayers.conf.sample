@@ -6,6 +6,7 @@ BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
 BBLAYERS ?= " \
+  ##OEROOT##/../meta-debug \
   ##OEROOT##/meta \
   ##OEROOT##/../meta-raspberrypi \
   ##OEROOT##/../meta-scsat1-rpi \
