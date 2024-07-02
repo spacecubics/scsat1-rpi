@@ -10,3 +10,8 @@ manifest:
         name-allowlist:
           - cmsis
           - hal_rpi_pico
+
+    - name: libcsp
+      url: https://github.com/libcsp/libcsp.git
+      revision: develop
+      path: modules/lib/libcsp
