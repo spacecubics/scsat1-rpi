@@ -1,0 +1,10 @@
+sample:
+  name: send csp-uart sample
+tests:
+  sample.csp-send:
+    build_only: true
+    platform_allow:
+      - rpi_pico
+    tags:
+      - uart
+      - usb_device
