@@ -14,5 +14,4 @@ project(scsat1-rpi-pico)
 target_sources(app PRIVATE
 	src/main.c
 	src/temp.c
-	src/scbus.c
 )
