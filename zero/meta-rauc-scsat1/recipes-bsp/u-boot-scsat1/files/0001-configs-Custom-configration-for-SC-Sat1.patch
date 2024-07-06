@@ -1,0 +1,41 @@
+From 0a92a43451a3fb2e03c09a64d42ae4f662d046e5 Mon Sep 17 00:00:00 2001
+From: Takuya Sasaki <takuya.sasaki@spacecubics.com>
+Date: Fri, 5 Jul 2024 16:25:52 +0900
+Subject: [PATCH] configs: Custom configration for SC-Sat1
+
+In SC-Sat1, since Zero and Pico communicate via UART, it is
+necessary to disable the following functions in U-boot.
+
+  - Console output on serial
+  - Abort auto boot by hit any key
+
+Signed-off-by: Takuya Sasaki <takuya.sasaki@spacecubics.com>
+---
+ configs/rpi_arm64_defconfig | 2 ++
+ include/configs/rpi.h       | 1 +
+ 2 files changed, 3 insertions(+)
+
+diff --git a/configs/rpi_arm64_defconfig b/configs/rpi_arm64_defconfig
+index 06ae3e93b2..678c485531 100644
+--- a/configs/rpi_arm64_defconfig
++++ b/configs/rpi_arm64_defconfig
+@@ -53,3 +53,5 @@ CONFIG_SYS_WHITE_ON_BLACK=y
+ CONFIG_CONSOLE_SCROLL_LINES=10
+ CONFIG_PHYS_TO_BUS=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SILENT_CONSOLE=y
++CONFIG_BOOTDELAY=-2
+diff --git a/include/configs/rpi.h b/include/configs/rpi.h
+index 4c5c1ac31f..cc348011a9 100644
+--- a/include/configs/rpi.h
++++ b/include/configs/rpi.h
+@@ -171,6 +171,7 @@
+ 
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+ 	"dhcpuboot=usb start; dhcp u-boot.uimg; bootm\0" \
++	"silent=1" \
+ 	ENV_DEVICE_SETTINGS \
+ 	ENV_DFU_SETTINGS \
+ 	ENV_MEM_LAYOUT_SETTINGS \
+-- 
+2.34.1
