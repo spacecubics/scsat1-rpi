@@ -33,6 +33,21 @@ void *handle_csp_packet(void *param)
 				csp_buffer_free(packet);
 				break;
 
+			case PORT_I:
+				init_photo_dir_service(conn);
+				csp_buffer_free(packet);
+				break;
+
+			case PORT_C:
+				capture_frame_service(conn);
+				csp_buffer_free(packet);
+				break;
+
+			case PORT_F:
+				get_frame_count_service(conn);
+				csp_buffer_free(packet);
+				break;
+
 			default:
 				csp_service_handler(packet);
 				break;
