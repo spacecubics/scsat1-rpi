@@ -28,6 +28,11 @@ void *handle_csp_packet(void *param)
 				csp_buffer_free(packet);
 				break;
 
+			case PORT_T:
+				get_temp_service(conn);
+				csp_buffer_free(packet);
+				break;
+
 			default:
 				csp_service_handler(packet);
 				break;

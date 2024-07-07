@@ -11,6 +11,7 @@
 #include <csp/csp.h>
 
 #define PORT_A (10U) /* for csp_server_client */
+#define PORT_T (11U) /* for get temperature */
 
 #ifndef MAIN_OBC_CAN_ADDR
 #define MAIN_OBC_CAN_ADDR (1U)
@@ -33,3 +34,6 @@ void *handle_csp_packet(void *param);
 
 /* router.c */
 int start_csp_router(void);
+
+/* temp.c */
+void get_temp_service(csp_conn_t *conn);
