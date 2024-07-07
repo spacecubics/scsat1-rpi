@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2024 Space Cubics, LLC.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 #include "cspd.h"
 
-/* uint8_t csp_dbg_packet_print = 1; */
 #include <csp/csp_rtable.h>
 #include <csp/drivers/can_socketcan.h>
 #include <csp/drivers/usart.h>
