@@ -27,6 +27,8 @@ $ cd scsat1-rpi/zero
 $ git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi
 $ git clone -b kirkstone git://git.yoctoproject.org/poky
 $ git clone -b kirkstone git://git.openembedded.org/meta-openembedded
+$ git clone -b kirkstone https://github.com/rauc/meta-rauc.git
+$ git clone -b kirkstone https://github.com/rauc/meta-rauc-community.git
 $ TEMPLATECONF=$(readlink -f ./meta-scsat1-rpi/conf) source ./poky/oe-init-build-env
 $ bitbake core-image-minimal
 ```
