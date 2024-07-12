@@ -8,7 +8,7 @@
 #include <dirent.h>
 #include "cspd.h"
 
-#define CAM_FRAME_PATH   "/home/root/photo"
+#define CAM_FRAME_PATH   "/storageA/photo"
 #define CAM_FRAME_PREFIX "frame"
 
 static int init_photo_dir(void)
