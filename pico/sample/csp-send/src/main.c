@@ -35,12 +35,11 @@ int main(void)
 				 .stopbits = 1,
 				 .paritysetting = 0};
 	int error = csp_usart_open_and_add_kiss_interface(&conf, CSP_IF_KISS_DEFAULT_NAME,
-							  &default_iface);
+							  CSP_SRC_ADDR, &default_iface);
 	if (error != CSP_ERR_NONE) {
 		LOG_ERR("failed to add KISS interface [%s], error: %d", kiss_device, error);
 		exit(1);
 	}
-	default_iface->addr = CSP_SRC_ADDR;
 	default_iface->is_default = 1;
 
 	LOG_DBG("successful add KISS interface [%s]", kiss_device);

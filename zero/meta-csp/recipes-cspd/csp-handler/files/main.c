@@ -37,13 +37,12 @@ int main()
 		.paritysetting = 0,
 	};
 	int error = csp_usart_open_and_add_kiss_interface(&usart_conf, CSP_IF_KISS_DEFAULT_NAME,
-							  &usart_iface);
+							  RPI_ZERO_UART_ADDR, &usart_iface);
 	if (error != CSP_ERR_NONE) {
 		csp_print("failed to add KISS interface [%s], error: %d\n", usart_conf.device,
 			  error);
 		exit(1);
 	}
-	usart_iface->addr = RPI_ZERO_UART_ADDR;
 	usart_iface->netmask = csp_id_get_host_bits();
 
 	csp_rtable_set(RPI_PICO_UART_ADDR, csp_id_get_host_bits(), usart_iface, CSP_NO_VIA_ADDRESS);

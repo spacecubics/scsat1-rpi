@@ -112,13 +112,12 @@ int csp_server_start(void)
 				 .stopbits = PICO_UART0_STOPBITS,
 				 .paritysetting = PICO_UART0_PARITY};
 	error = csp_usart_open_and_add_kiss_interface(&conf, CSP_IF_KISS_DEFAULT_NAME,
-						      &default_iface);
+						      PICO_CSP_ADDR, &default_iface);
 	if (error != CSP_ERR_NONE) {
 		LOG_ERR("failed to add KISS interface [%s], error: %d", kiss_device, error);
 		ret = -1;
 		goto end;
 	}
-	default_iface->addr = PICO_CSP_ADDR;
 	default_iface->is_default = 1;
 
 	server_start();
