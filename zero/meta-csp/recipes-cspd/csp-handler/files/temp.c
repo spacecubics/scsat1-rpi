@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <sys/ioctl.h>
+#include <systemd/sd-journal.h>
 #include <linux/i2c-dev.h>
 #include "cspd.h"
 
@@ -24,22 +25,22 @@ static int get_tmp175_temp(uint16_t *temp)
 
 	sprintf(i2c_dev_fn, "/dev/i2c-%d", I2C_DEV_NO);
 	if ((fd = open(i2c_dev_fn, O_RDWR)) < 0) {
-		csp_print("Faild to open i2c port\n");
+		sd_journal_print(LOG_ERR, "Faild to open i2c port\n");
 		return -1;
 	}
 
 	if (ioctl(fd, I2C_SLAVE, I2C_TMP175_SLAVE_ADDR) < 0) {
-		csp_print("Unable to get bus access to talk to slave\n");
+		sd_journal_print(LOG_ERR, "Unable to get bus access to talk to slave\n");
 		return -1;
 	}
 
 	if ((write(fd, &reg, 1)) != 1) {
-		csp_print("Error writing to i2c slave\n");
+		sd_journal_print(LOG_ERR, "Error writing to i2c slave\n");
 		return -1;
 	}
 
 	if (read(fd, dat, 2) != 2) {
-		csp_print("Error reading from i2c slave\n");
+		sd_journal_print(LOG_ERR, "Error reading from i2c slave\n");
 		return -1;
 	}
 

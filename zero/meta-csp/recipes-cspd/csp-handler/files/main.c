@@ -6,6 +6,7 @@
 
 #include "cspd.h"
 
+#include <systemd/sd-journal.h>
 #include <csp/csp_rtable.h>
 #include <csp/drivers/can_socketcan.h>
 #include <csp/drivers/usart.h>
@@ -21,7 +22,7 @@ int main()
 	/* CAN interface */
 	csp_iface_t *can_iface = csp_can_socketcan_init("can0", RPI_ZERO_CAN_ADDR, 1000000, true);
 	if (can_iface == NULL) {
-		csp_print("failed to add CAN interface [can0]");
+		sd_journal_print(LOG_ERR, "failed to add CAN interface [can0]");
 		exit(1);
 	}
 	can_iface->is_default = 1;
@@ -39,7 +40,7 @@ int main()
 	int error = csp_usart_open_and_add_kiss_interface(&usart_conf, CSP_IF_KISS_DEFAULT_NAME,
 							  RPI_ZERO_UART_ADDR, &usart_iface);
 	if (error != CSP_ERR_NONE) {
-		csp_print("failed to add KISS interface [%s], error: %d\n", usart_conf.device,
+		sd_journal_print(LOG_ERR, "failed to add KISS interface [%s], error: %d\n", usart_conf.device,
 			  error);
 		exit(1);
 	}
