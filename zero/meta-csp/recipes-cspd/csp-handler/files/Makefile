@@ -4,7 +4,7 @@ OBJS := $(SRCS:.c=.o)
 all: cspd
 
 cspd: $(OBJS)
-	${CC} ${CFLAGS} -o $@ $(OBJS) -l csp
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -l csp
 
 %.o: %.c
 	$(CC) -Wall -Wextra $(CFLAGS) -c $< -o $@
@@ -12,8 +12,8 @@ cspd: $(OBJS)
 $(OBJS): cspd.h
 
 install:
-	install -d ${DESTDIR}${BINDIR}
-	install -m 0755 cspd ${DESTDIR}${BINDIR}
+	install -d $(DESTDIR)$(BINDIR)
+	install -m 0755 cspd $(DESTDIR)$(BINDIR)
 
 clean:
 	rm -rf cspd *.o
