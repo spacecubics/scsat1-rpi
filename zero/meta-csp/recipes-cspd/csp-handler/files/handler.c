@@ -7,6 +7,7 @@
 #include "handler.h"
 
 #include <csp/drivers/can_socketcan.h>
+#include <systemd/sd-journal.h>
 #include "cspd.h"
 #include "utils.h"
 #include "temp.h"
@@ -29,7 +30,7 @@ void *handle_csp_packet(void *param)
 		while ((packet = csp_read(conn, 50)) != NULL) {
 			switch (csp_conn_dport(conn)) {
 			case PORT_A:
-				csp_print("recived: %s\n", (char *)packet->data);
+				sd_journal_print(LOG_INFO, "recived: %s\n", (char *)packet->data);
 				csp_buffer_free(packet);
 				break;
 
