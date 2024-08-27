@@ -4,12 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "cspd.h"
-
 #include <csp/csp_rtable.h>
 #include <csp/drivers/can_socketcan.h>
 #include <csp/drivers/usart.h>
 #include <csp/csp_id.h>
+#include "cspd.h"
+#include "handler.h"
 
 extern csp_conf_t csp_conf;
 

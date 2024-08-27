@@ -4,9 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "cspd.h"
+#include "handler.h"
 
 #include <csp/drivers/can_socketcan.h>
+#include "cspd.h"
 #include "utils.h"
 
 void *handle_csp_packet(void *param)
