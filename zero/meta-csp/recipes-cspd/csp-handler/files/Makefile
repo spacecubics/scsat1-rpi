@@ -1,5 +1,5 @@
-SRCS=camera.c temp.c handler.c router.c main.c
-OBJS=$(SRCS:.c=.o)
+SRCS := camera.c temp.c handler.c router.c main.c
+OBJS := $(SRCS:.c=.o)
 
 all: cspd
 
