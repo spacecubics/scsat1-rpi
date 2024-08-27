@@ -53,7 +53,6 @@ static int get_tmp175_temp(uint16_t *temp)
 
 void get_temp_service(csp_conn_t *conn)
 {
-	int ret;
 	uint16_t temp = 0;
 	csp_packet_t *send_packet = csp_buffer_get(0);
 
