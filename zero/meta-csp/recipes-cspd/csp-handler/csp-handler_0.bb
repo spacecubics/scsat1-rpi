@@ -10,6 +10,7 @@ SRC_URI = "file://main.c \
            file://router.c \
            file://router.h \
            file://temp.c \
+           file://temp.h \
            file://camera.c \
            file://cspd.h \
            file://Makefile \

@@ -9,6 +9,7 @@
 #include <csp/drivers/can_socketcan.h>
 #include "cspd.h"
 #include "utils.h"
+#include "temp.h"
 
 void *handle_csp_packet(void *param)
 {
