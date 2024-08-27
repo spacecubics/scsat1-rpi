@@ -106,7 +106,6 @@ void capture_frame_service(csp_conn_t *conn)
 
 void get_frame_count_service(csp_conn_t *conn)
 {
-	int ret;
 	uint16_t count = 0;
 	csp_packet_t *send_packet = csp_buffer_get(0);
 
