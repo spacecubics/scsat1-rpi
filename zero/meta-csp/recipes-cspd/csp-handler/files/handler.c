@@ -10,6 +10,7 @@
 #include "cspd.h"
 #include "utils.h"
 #include "temp.h"
+#include "camera.h"
 
 void *handle_csp_packet(void *param)
 {
