@@ -4,10 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "cspd.h"
+#include "router.h"
 
 #include <pthread.h>
 #include <errno.h>
+#include "cspd.h"
 #include "utils.h"
 
 static void *router(void *param)
