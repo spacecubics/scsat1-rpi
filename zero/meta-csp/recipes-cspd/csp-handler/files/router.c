@@ -8,9 +8,12 @@
 
 #include <pthread.h>
 #include <errno.h>
+#include "utils.h"
 
 static void *router(void *param)
 {
+	ARG_UNUSED(param);
+
 	while (1) {
 		csp_route_work();
 	}
