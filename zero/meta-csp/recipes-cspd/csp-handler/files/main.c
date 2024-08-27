@@ -10,6 +10,7 @@
 #include <csp/csp_id.h>
 #include "cspd.h"
 #include "handler.h"
+#include "router.h"
 
 extern csp_conf_t csp_conf;
 
