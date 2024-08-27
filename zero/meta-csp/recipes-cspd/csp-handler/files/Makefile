@@ -7,7 +7,7 @@ SYSTEMD_LIBS := $(shell pkg-config --libs libsystemd)
 all: cspd
 
 cspd: $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -l csp $(SYSTEMD_LIBS)
+	$(CC) -o $@ $(OBJS) -l csp $(SYSTEMD_LIBS)
 
 %.o: %.c
 	$(CC) -Wall -Wextra $(CFLAGS) $(SYSTEMD_CFLAGS) -c $< -o $@
