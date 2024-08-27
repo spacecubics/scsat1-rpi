@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include "cspd.h"
+#include "utils.h"
 
 #define CAM_FRAME_PATH   "/storageA/photo"
 #define CAM_FRAME_PREFIX "frame"
@@ -93,11 +94,13 @@ end:
 
 void init_photo_dir_service(csp_conn_t *conn)
 {
+	ARG_UNUSED(conn);
 	(void)init_photo_dir();
 }
 
 void capture_frame_service(csp_conn_t *conn)
 {
+	ARG_UNUSED(conn);
 	(void)capture_frame();
 }
 
