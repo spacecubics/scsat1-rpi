@@ -6,6 +6,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 SRC_URI = "file://main.c \
            file://utils.h \
            file://handler.c \
+           file://handler.h \
            file://router.c \
            file://temp.c \
            file://camera.c \

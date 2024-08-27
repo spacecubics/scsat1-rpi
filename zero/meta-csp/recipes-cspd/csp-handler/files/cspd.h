@@ -32,9 +32,6 @@
 #define RPI_PICO_UART_ADDR (4U)
 #endif /* RPI_PICO_UART_ADDR */
 
-/* handler.c */
-void *handle_csp_packet(void *param);
-
 /* router.c */
 int start_csp_router(void);
 
