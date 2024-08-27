@@ -18,7 +18,7 @@ static int init_photo_dir(void)
 	DIR *dir;
 	struct dirent *entry;
 	int ret = 0;
-	char fname[128];
+	char fname[PATH_MAX];
 
 	dir = opendir(CAM_FRAME_PATH);
 	if (dir == NULL) {
