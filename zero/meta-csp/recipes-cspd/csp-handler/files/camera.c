@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <systemd/sd-journal.h>
 #include "cspd.h"
 #include "utils.h"
 
@@ -73,7 +74,7 @@ static int get_frame_file_count(uint16_t *count)
 
 	dir = opendir(CAM_FRAME_PATH);
 	if (dir == NULL) {
-		csp_print("Failed to open dir %s\n", CAM_FRAME_PATH);
+		sd_journal_print(LOG_ERR, "Failed to open dir %s\n", CAM_FRAME_PATH);
 		ret = -1;
 		goto end;
 	}

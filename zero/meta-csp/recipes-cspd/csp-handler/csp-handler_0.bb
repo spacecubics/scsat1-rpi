@@ -19,7 +19,7 @@ SRC_URI = "file://main.c \
 
 S = "${WORKDIR}"
 
-DEPENDS:append = "libcsp"
+DEPENDS:append = "libcsp systemd"
 
 EXTRA_OEMAKE = "DESTDIR=${D} LIBDIR=${libdir} INCLUDEDIR=${includedir} BINDIR=${bindir} \
                 CFLAGS+='-D MAIN_OBC_CAN_ADDR=${MAIN_OBC_CAN_ADDRESS} -D RPI_ZERO_CAN_ADDR=${RPI_ZERO_CAN_ADDRESS} -D RPI_ZERO_UART_ADDR=${RPI_ZERO_UART_ADDRESS} -D RPI_PICO_UART_ADDR=${RPI_PICO_UART_ADDRESS}'"
@@ -27,3 +27,5 @@ EXTRA_OEMAKE = "DESTDIR=${D} LIBDIR=${libdir} INCLUDEDIR=${includedir} BINDIR=${
 do_install() {
     oe_runmake install
 }
+
+inherit pkgconfig
