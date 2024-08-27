@@ -7,7 +7,7 @@ cspd: $(OBJS)
 	${CC} ${CFLAGS} -o $@ $(OBJS) -l csp
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -Wall -Wextra $(CFLAGS) -c $< -o $@
 
 $(OBJS): cspd.h
 
