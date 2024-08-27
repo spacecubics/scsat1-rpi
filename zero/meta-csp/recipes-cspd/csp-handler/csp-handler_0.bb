@@ -12,6 +12,7 @@ SRC_URI = "file://main.c \
            file://temp.c \
            file://temp.h \
            file://camera.c \
+           file://camera.h \
            file://cspd.h \
            file://Makefile \
            file://LICENSE"

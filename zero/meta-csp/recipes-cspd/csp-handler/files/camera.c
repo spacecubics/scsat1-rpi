@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include "camera.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
