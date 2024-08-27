@@ -7,9 +7,11 @@
 #include "cspd.h"
 
 #include <csp/drivers/can_socketcan.h>
+#include "utils.h"
 
 void *handle_csp_packet(void *param)
 {
+	ARG_UNUSED(param);
 	csp_socket_t sock = {0};
 	csp_bind(&sock, CSP_ANY);
 	csp_listen(&sock, 10);
