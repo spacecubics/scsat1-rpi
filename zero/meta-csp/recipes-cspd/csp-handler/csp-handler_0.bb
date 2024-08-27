@@ -4,6 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 SRC_URI = "file://main.c \
+           file://utils.h \
            file://handler.c \
            file://router.c \
            file://temp.c \
