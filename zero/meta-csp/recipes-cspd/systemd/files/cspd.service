@@ -2,7 +2,7 @@
 Description=CSP Routing and execute Camera
 
 [Service]
-ExecStart=/usr/bin/csp_handler
+ExecStart=/usr/bin/cspd
 
 [Install]
 WantedBy=multi-user.target
