@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include "temp.h"
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <time.h>

@@ -32,9 +32,6 @@
 #define RPI_PICO_UART_ADDR (4U)
 #endif /* RPI_PICO_UART_ADDR */
 
-/* temp.c */
-void get_temp_service(csp_conn_t *conn);
-
 /* camera.c */
 void init_photo_dir_service(csp_conn_t *conn);
 void capture_frame_service(csp_conn_t *conn);
