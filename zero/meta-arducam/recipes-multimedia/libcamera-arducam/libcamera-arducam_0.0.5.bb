@@ -12,7 +12,7 @@ SRC_URI = " \
         git://github.com/ArduCAM/libcamera.git;protocol=https;branch=arducam \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "e0a93d12f56ff9cd79520c2c99f2ef3b22c2f0a1"
 
 PE = "1"
 
