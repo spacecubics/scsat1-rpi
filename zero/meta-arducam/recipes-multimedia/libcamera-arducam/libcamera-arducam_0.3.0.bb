@@ -9,14 +9,14 @@ LIC_FILES_CHKSUM = "\
 "
 
 SRC_URI = " \
-        git://github.com/ArduCAM/libcamera.git;protocol=https;branch=arducam \
+        https://github.com/ArduCAM/libcamera/archive/refs/tags/arducam_v0.3.0+20240618.tar.gz \
 "
 
-SRCREV = "e0a93d12f56ff9cd79520c2c99f2ef3b22c2f0a1"
+SRC_URI[sha256sum] = "ccd203f20e954e671f00ab8757880134689595481ca7b9f848b2fa5588572a28"
 
 PE = "1"
 
-S = "${WORKDIR}/git"
+S = "${WORKDIR}/libcamera-arducam_v0.3.0-20240618"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls chrpath-native libevent libyaml arducam-pivariety"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
