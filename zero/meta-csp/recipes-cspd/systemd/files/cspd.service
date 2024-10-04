@@ -2,7 +2,7 @@
 Description=CSP Routing and execute Camera
 
 [Service]
-ExecStart=/usr/bin/cspd
+ExecStart=/usr/bin/libcamerify /usr/bin/cspd
 
 [Install]
 WantedBy=multi-user.target
