@@ -43,6 +43,10 @@ void *handle_csp_packet(void *param)
 				csp_buffer_free(packet);
 				break;
 
+			case PORT_J:
+				capture_jpeg_service(conn);
+				csp_buffer_free(packet);
+				break;
 			case PORT_F:
 				get_frame_count_service(conn);
 				csp_buffer_free(packet);
