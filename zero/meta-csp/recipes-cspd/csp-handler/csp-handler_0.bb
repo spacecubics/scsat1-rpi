@@ -8,13 +8,14 @@ SRC_URI = "file://main.c \
            file://router.c \
            file://temp.c \
            file://camera.c \
+           file://yuyv_to_rgb.h \
            file://cspd.h \
            file://Makefile \
            file://LICENSE"
 
 S = "${WORKDIR}"
 
-DEPENDS:append = "libcsp"
+DEPENDS:append = "libcsp jpeg"
 
 EXTRA_OEMAKE = "DESTDIR=${D} LIBDIR=${libdir} INCLUDEDIR=${includedir} BINDIR=${bindir} \
                 CFLAGS+='-D MAIN_OBC_CAN_ADDR=${MAIN_OBC_CAN_ADDRESS} -D RPI_ZERO_CAN_ADDR=${RPI_ZERO_CAN_ADDRESS} -D RPI_ZERO_UART_ADDR=${RPI_ZERO_UART_ADDRESS} -D RPI_PICO_UART_ADDR=${RPI_PICO_UART_ADDRESS}'"

@@ -2,7 +2,7 @@ SRCS=camera.c temp.c handler.c router.c main.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(OBJS)
-	${CC} ${CFLAGS} -o csp_handler $(OBJS) -l csp
+	${CC} ${CFLAGS} -o csp_handler $(OBJS) -l csp -ljpeg
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
