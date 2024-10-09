@@ -24,6 +24,7 @@
 
 #define CAMERA_WIDTH  1920
 #define CAMERA_HEIGHT 1080
+#define JPEG_QUALITY 90
 #define MMAP_COUNT    2
 
 #define CAM_FRAME_PATH   "/storageA/photo"
@@ -82,6 +83,7 @@ static void jpeg_write_file(uint8_t *prgb, int width, int height)
 	cinfo.in_color_space = JCS_RGB;
 
 	jpeg_set_defaults(&cinfo);
+	jpeg_set_quality(&cinfo, JPEG_QUALITY, TRUE);
 	jpeg_start_compress(&cinfo, TRUE);
 
 	for (int y = 0; y < height; y++) {
