@@ -4,3 +4,5 @@
 /zero/poky/
 /zero/meta-raspberrypi/
 /zero/meta-openembedded/
+/zero/meta-rauc/
+/zero/meta-rauc-community/
