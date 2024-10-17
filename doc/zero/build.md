@@ -7,6 +7,11 @@
 
 Install packages for your environment
 
+> [!CAUTION]
+> Requires `gcc-13` or lower
+> 
+> ref. #55
+
 ## Ubuntu
 
 ```shell
