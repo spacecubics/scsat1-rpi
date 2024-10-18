@@ -1,0 +1,48 @@
+/delete-node/ &code_partition;
+
+/ {
+	chosen {
+		zephyr,console = &uart1;
+		zephyr,shell-uart = &uart1;
+		zephyr,uart-mcumgr = &uart0;
+		zephyr,code-partition = &boot_partition;
+	};
+
+	aliases {
+		mcuboot-led0 = &led0;
+	};
+};
+
+&uart1 {
+	current-speed = <115200>;
+	status = "okay";
+	pinctrl-0 = <&uart1_defaut>;
+	pinctrl-names = "default";
+};
+
+&pinctrl {
+	uart1_defaut: uart1_default {
+		group1 {
+			pinmux = <UART1_TX_P8>;
+		};
+		group2 {
+			pinmux = <UART1_RX_P9>;
+			input-enable;
+		};
+	};
+};
+
+&flash0 {
+	partitions {
+		boot_partition: partition@100 {
+			label = "mcuboot";
+			reg = <0x00000100 0xFF00>;
+			read-only;
+		};
+
+		slot0_partition: partition@10000 {
+			label = "image-0";
+			reg = <0x00010000 0x1F0000>;
+		};
+	};
+};
