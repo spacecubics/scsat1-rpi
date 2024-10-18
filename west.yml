@@ -15,3 +15,13 @@ manifest:
       url: https://github.com/libcsp/libcsp.git
       revision: develop
       path: modules/lib/libcsp
+
+    - name: mcuboot
+      url: https://github.com/zephyrproject-rtos/mcuboot
+      revision: main
+      path: bootloader/mcuboot
+
+    - name: zcbor
+      url: https://github.com/zephyrproject-rtos/zcbor
+      revision: 75d088037eb237b18e7ec1f47c9ce494b9b95aab
+      path: modules/lib/zcbor
