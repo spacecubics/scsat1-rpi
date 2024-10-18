@@ -8,6 +8,11 @@ if (CONSOLE STREQUAL uart1)
     list(APPEND EXTRA_DTC_OVERLAY_FILE "uart1.overlay")
 endif()
 
+if (MCUBOOT STREQUAL enable)
+    list(APPEND EXTRA_DTC_OVERLAY_FILE "mcuboot.overlay")
+    list(APPEND EXTRA_CONF_FILE "mcuboot.conf")
+endif()
+
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(scsat1-rpi-pico)
 
