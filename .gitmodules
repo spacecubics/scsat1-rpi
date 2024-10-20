@@ -1,0 +1,20 @@
+[submodule "zero/meta-raspberrypi"]
+	path = zero/meta-raspberrypi
+	url = https://git.yoctoproject.org/meta-raspberrypi
+	branch = kirkstone
+[submodule "zero/poky"]
+	path = zero/poky
+	url = https://git.yoctoproject.org/poky
+	branch = kirkstone
+[submodule "zero/meta-openembedded"]
+	path = zero/meta-openembedded
+	url = https://git.openembedded.org/meta-openembedded
+	branch = kirkstone
+[submodule "zero/meta-rauc"]
+	path = zero/meta-rauc
+	url = https://github.com/rauc/meta-rauc.git
+	branch = kirkstone
+[submodule "zero/meta-rauc-community"]
+	path = zero/meta-rauc-community
+	url = https://github.com/rauc/meta-rauc-community.git
+	branch = kirkstone
