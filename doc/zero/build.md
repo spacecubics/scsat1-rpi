@@ -27,13 +27,9 @@ https://docs.yoctoproject.org/ref-manual/system-requirements.html#required-packa
 
 run in bash or zsh
 ```shell
-$ git clone https://github.com/spacecubics/scsat1-rpi
-$ cd scsat1-rpi/zero
-$ git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi
-$ git clone -b kirkstone git://git.yoctoproject.org/poky
-$ git clone -b kirkstone git://git.openembedded.org/meta-openembedded
-$ git clone -b kirkstone https://github.com/rauc/meta-rauc.git
-$ git clone -b kirkstone https://github.com/rauc/meta-rauc-community.git
+$ git clone https://github.com/spacecubics/scsat1-rpi && cd scsat1-rpi
+$ git submodule update --init
+$ cd zero
 $ TEMPLATECONF=$(readlink -f ./meta-scsat1-rpi/conf) source ./poky/oe-init-build-env
 $ bitbake core-image-minimal
 ```
