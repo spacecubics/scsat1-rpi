@@ -14,7 +14,7 @@ LOG_MODULE_REGISTER(main, CONFIG_MAIN_LOG_LEVEL);
 
 #define SERVER_PORT 10
 
-#define CSP_SRC_ADDR 14
+#define CSP_SRC_ADDR 26
 
 extern csp_conf_t csp_conf;
 

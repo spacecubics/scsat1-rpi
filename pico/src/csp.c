@@ -22,7 +22,7 @@ LOG_MODULE_REGISTER(csp, CONFIG_MAIN_LOG_LEVEL);
 #define PICO_UART0_DATABIT  (8U)
 #define PICO_UART0_STOPBITS (1U)
 #define PICO_UART0_PARITY   (0U)
-#define PICO_CSP_ADDR       (14U)
+#define PICO_CSP_ADDR       (26U)
 
 extern csp_conf_t csp_conf;
 
