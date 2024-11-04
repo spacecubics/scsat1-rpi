@@ -16,8 +16,8 @@ extern csp_conf_t csp_conf;
 
 #define SERVER_PORT 10
 
-#define CSP_DST_ADDR 13
-#define CSP_SRC_ADDR 14
+#define CSP_DST_ADDR 24
+#define CSP_SRC_ADDR 26
 
 int main(void)
 {
