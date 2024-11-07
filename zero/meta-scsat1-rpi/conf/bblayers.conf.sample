@@ -18,4 +18,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-rauc \
   ##OEROOT##/../meta-rauc-community/meta-rauc-raspberrypi \
   ##OEROOT##/../meta-rauc-scsat1 \
+  ##OEROOT##/../meta-pico-update \
   "
