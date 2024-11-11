@@ -12,6 +12,8 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(csp, CONFIG_MAIN_LOG_LEVEL);
 
+#include "temp.h"
+
 #define ROUTER_STACK_SIZE (256U)
 #define SERVER_STACK_SIZE (1024U)
 #define ROUTER_PRIO       (0U)
@@ -23,6 +25,8 @@ LOG_MODULE_REGISTER(csp, CONFIG_MAIN_LOG_LEVEL);
 #define PICO_UART0_STOPBITS (1U)
 #define PICO_UART0_PARITY   (0U)
 #define PICO_CSP_ADDR       (26U)
+
+#define PORT_T (11U) /* for get temperature */
 
 extern csp_conf_t csp_conf;
 
@@ -82,6 +86,17 @@ static void server(void)
 		csp_packet_t *packet;
 		while ((packet = csp_read(conn, 50)) != NULL) {
 			switch (csp_conn_dport(conn)) {
+			case PORT_T:
+				float temp;
+				int result = get_temp(&temp);
+				if (result < 0) {
+					LOG_ERR("Failed to get temperature");
+				} else {
+					LOG_DBG("Temperature: %.2f℃", (double)temp);
+					memcpy(packet->data, &temp, sizeof(temp));
+					packet->length = sizeof(temp);
+					csp_send(conn, packet);
+				}
 			default:
 				csp_service_handler(packet);
 				break;

@@ -6,6 +6,4 @@
 
 #pragma once
 
-#include <zephyr/device.h>
-
-int get_temp(const struct device *dev, float *temp);
+int get_temp(float *temp);
