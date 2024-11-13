@@ -29,11 +29,6 @@ void *handle_csp_packet(void *param)
 		csp_packet_t *packet;
 		while ((packet = csp_read(conn, 50)) != NULL) {
 			switch (csp_conn_dport(conn)) {
-			case PORT_A:
-				sd_journal_print(LOG_INFO, "recived: %s\n", (char *)packet->data);
-				csp_buffer_free(packet);
-				break;
-
 			case PORT_T:
 				get_temp_service(conn);
 				csp_buffer_free(packet);

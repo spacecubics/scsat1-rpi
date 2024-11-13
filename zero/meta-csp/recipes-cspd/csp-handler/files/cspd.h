@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <csp/csp.h>
 
-#define PORT_A (10U) /* for csp_server_client */
 #define PORT_T (11U) /* for get temperature */
 #define PORT_I (12U) /* for init photo dir */
 #define PORT_C (13U) /* for capture frame */
