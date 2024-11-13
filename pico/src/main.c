@@ -6,7 +6,7 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
-#include "csp.h"
+#include "pico_csp.h"
 
 int main(void)
 {
