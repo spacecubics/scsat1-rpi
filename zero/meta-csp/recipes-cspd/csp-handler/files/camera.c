@@ -95,25 +95,29 @@ end:
 	return ret;
 }
 
-void init_photo_dir_service(csp_conn_t *conn)
+void init_photo_dir_service(uint8_t command_id, csp_packet_t *packet)
 {
-	ARG_UNUSED(conn);
+	ARG_UNUSED(command_id);
+	ARG_UNUSED(packet);
 	(void)init_photo_dir();
 }
 
-void capture_frame_service(csp_conn_t *conn)
+void capture_frame_service(uint8_t command_id, csp_packet_t *packet)
 {
-	ARG_UNUSED(conn);
+	ARG_UNUSED(command_id);
+	ARG_UNUSED(packet);
 	(void)capture_frame();
 }
 
-void get_frame_count_service(csp_conn_t *conn)
+void get_frame_count_service(uint8_t command_id, csp_packet_t *packet)
 {
 	uint16_t count = 0;
-	csp_packet_t *send_packet = csp_buffer_get(0);
+	struct hwtest_cam_telemetry tlm;
 
 	(void)get_frame_file_count(&count);
-	memcpy(send_packet->data, &count, sizeof(count));
-	send_packet->length = sizeof(count);
-	csp_send(conn, send_packet);
+
+	tlm.telemetry_id = command_id;
+	tlm.frame_count = count;
+	memcpy(packet->data, &tlm, sizeof(tlm));
+	csp_sendto_reply(packet, packet, CSP_O_SAME);
 }

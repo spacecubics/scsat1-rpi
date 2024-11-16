@@ -10,10 +10,9 @@
 #include <stdlib.h>
 #include <csp/csp.h>
 
-#define PORT_T (11U) /* for get temperature */
-#define PORT_I (12U) /* for init photo dir */
-#define PORT_C (13U) /* for capture frame */
-#define PORT_F (14U) /* for get frame count */
+#define PORT_HWTEST (11U) /* for HWTEST program */
+
+#define CSP_COMMAND_ID_OFFSET (1U)
 
 #ifndef MAIN_OBC_CAN_ADDR
 #define MAIN_OBC_CAN_ADDR (1U)
