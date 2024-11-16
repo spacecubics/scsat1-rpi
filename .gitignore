@@ -1,3 +1,5 @@
 *~
 
 /zero/build*
+/pico/bootloader/build*
+/pico/build*
