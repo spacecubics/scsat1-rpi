@@ -8,4 +8,9 @@
 
 #include <csp/csp.h>
 
-void get_temp_service(csp_conn_t *conn);
+struct hwtest_temp_telemetry {
+	uint8_t telemetry_id;
+	uint16_t temp_raw;
+} __attribute__((__packed__));
+
+void get_temp_service(uint8_t command_id, csp_packet_t *packet);

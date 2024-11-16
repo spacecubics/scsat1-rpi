@@ -54,14 +54,16 @@ static int get_tmp175_temp(uint16_t *temp)
 	return 0;
 }
 
-void get_temp_service(csp_conn_t *conn)
+void get_temp_service(uint8_t command_id, csp_packet_t *packet)
 {
 	uint16_t temp = 0;
-	csp_packet_t *send_packet = csp_buffer_get(0);
+	struct hwtest_temp_telemetry tlm;
 
 	(void)get_tmp175_temp(&temp);
 
-	memcpy(send_packet->data, &temp, sizeof(temp));
-	send_packet->length = sizeof(temp);
-	csp_send(conn, send_packet);
+	tlm.telemetry_id = command_id;
+	tlm.temp_raw = temp;
+	memcpy(packet->data, &tlm, sizeof(tlm));
+	packet->length = sizeof(tlm);
+	csp_sendto_reply(packet, packet, CSP_O_SAME);
 }
