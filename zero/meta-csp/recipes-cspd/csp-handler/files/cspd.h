@@ -13,7 +13,8 @@
 #define PORT_HWTEST (11U) /* for HWTEST program */
 #define PORT_FILE   (13U) /* for file related command */
 
-#define CSP_COMMAND_ID_OFFSET (0U)
+#define CSP_COMMAND_ID_OFFSET  (0U)
+#define CSP_UNKNOWN_COMMAND_ID (255U)
 
 #ifndef MAIN_OBC_CAN_ADDR
 #define MAIN_OBC_CAN_ADDR (1U)
