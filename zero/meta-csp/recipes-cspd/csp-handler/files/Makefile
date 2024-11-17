@@ -1,4 +1,4 @@
-SRCS := file.c hwtest.c camera.c temp.c handler.c router.c main.c
+SRCS := upload.c file.c hwtest.c camera.c temp.c handler.c router.c main.c
 OBJS := $(SRCS:.c=.o)
 SYSTEMD_CFLAGS := $(shell pkg-config --cflags libsystemd)
 SYSTEMD_LIBS := $(shell pkg-config --libs libsystemd)
