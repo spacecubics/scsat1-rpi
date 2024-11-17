@@ -11,6 +11,7 @@
 #include "cspd.h"
 #include "utils.h"
 #include "hwtest.h"
+#include "file.h"
 
 void *handle_csp_packet(void *param)
 {
@@ -30,6 +31,9 @@ void *handle_csp_packet(void *param)
 			switch (csp_conn_dport(conn)) {
 			case PORT_HWTEST:
 				hwtest_handler(packet);
+				break;
+			case PORT_FILE:
+				file_handler(packet);
 				break;
 			default:
 				csp_service_handler(packet);
