@@ -8,7 +8,8 @@
 
 #include <csp/csp.h>
 
-#define FILE_NAME_MAX_LEN (64U)
+#define FILE_NAME_MAX_LEN       (64U)
+#define UPLOAD_DATA_REPLY_ENTRY (20U)
 
 struct upload_open_reply_telemetry {
 	uint8_t telemetry_id;
@@ -17,5 +18,18 @@ struct upload_open_reply_telemetry {
 	char file_name[FILE_NAME_MAX_LEN];
 } __attribute__((__packed__));
 
+struct upload_data_reply_entry {
+	uint32_t error_code;
+	uint32_t offset;
+	uint32_t size;
+} __attribute__((__packed__));
+
+struct upload_data_reply_telemetry {
+	uint8_t telemetry_id;
+	uint16_t session_id;
+	struct upload_data_reply_entry entry[UPLOAD_DATA_REPLY_ENTRY];
+} __attribute__((__packed__));
+
 void upload_handler_init(void);
 int file_upload_open_cmd(uint8_t command_id, csp_packet_t *packet);
+int file_upload_data_cmd(uint8_t command_id, csp_packet_t *packet);
