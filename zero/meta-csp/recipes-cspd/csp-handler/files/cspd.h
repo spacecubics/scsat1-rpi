@@ -11,6 +11,7 @@
 #include <csp/csp.h>
 
 #define PORT_HWTEST (11U) /* for HWTEST program */
+#define PORT_FILE   (13U) /* for file related command */
 
 #define CSP_COMMAND_ID_OFFSET (1U)
 
