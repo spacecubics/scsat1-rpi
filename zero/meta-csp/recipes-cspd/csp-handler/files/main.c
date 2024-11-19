@@ -13,6 +13,7 @@
 #include "handler.h"
 #include "router.h"
 #include "file.h"
+#include "shell.h"
 
 extern csp_conf_t csp_conf;
 
@@ -52,6 +53,7 @@ int main()
 	csp_rtable_set(MAIN_OBC_CAN_ADDR, csp_id_get_host_bits(), can_iface, CSP_NO_VIA_ADDRESS);
 
 	file_handler_init();
+	shell_handler_init();
 	start_csp_router();
 	handle_csp_packet(NULL);
 
