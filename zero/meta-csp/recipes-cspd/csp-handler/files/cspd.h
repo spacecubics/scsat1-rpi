@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <csp/csp.h>
 
+#define PORT_SHELL  (10U) /* for shell command */
 #define PORT_HWTEST (11U) /* for HWTEST program */
 #define PORT_FILE   (13U) /* for file related command */
 

@@ -12,6 +12,7 @@
 #include "utils.h"
 #include "hwtest.h"
 #include "file.h"
+#include "shell.h"
 
 void *handle_csp_packet(void *param)
 {
@@ -29,6 +30,9 @@ void *handle_csp_packet(void *param)
 		csp_packet_t *packet;
 		while ((packet = csp_read(conn, 50)) != NULL) {
 			switch (csp_conn_dport(conn)) {
+			case PORT_SHELL:
+				shell_handler(packet);
+				break;
 			case PORT_HWTEST:
 				hwtest_handler(packet);
 				break;
