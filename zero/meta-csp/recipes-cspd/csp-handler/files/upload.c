@@ -16,8 +16,9 @@
 #define UPLOAD_FILE_WRITE_BYTES (1U)
 
 /* Command size */
-#define UPLOAD_OPEN_CMD_SIZE (3U) + FILE_NAME_MAX_LEN
-#define UPLOAD_DATA_CMD_SIZE (11U) + UPLOAD_DATA_LEN
+#define UPLOAD_OPEN_CMD_SIZE  (3U) + FILE_NAME_MAX_LEN
+#define UPLOAD_DATA_CMD_SIZE  (11U) + UPLOAD_DATA_LEN
+#define UPLOAD_CLOSE_CMD_SIZE (3U)
 
 /* Command ID */
 #define FILE_UPLOAD_OPEN_CMD (2U)
@@ -142,6 +143,21 @@ static void send_upload_data_reply(csp_packet_t *packet, struct session_entry *s
 	return;
 }
 
+static void send_upload_close_reply(csp_packet_t *packet, uint8_t command_id, int err_code,
+				    uint16_t session_id)
+{
+	struct upload_close_reply_telemetry tlm;
+
+	tlm.telemetry_id = command_id;
+	tlm.error_code = htole32(err_code);
+	tlm.session_id = htole16(session_id);
+
+	memcpy(packet->data, &tlm, sizeof(tlm));
+	packet->length = sizeof(tlm);
+
+	csp_sendto_reply(packet, packet, CSP_O_SAME);
+}
+
 static int open_upload_file(uint16_t session_id, const char *fname)
 {
 	int ret = 0;
@@ -195,6 +211,30 @@ static int write_upload_file(struct session_entry *session, uint32_t offset, uin
 		sd_journal_print(LOG_ERR, "Faild to write the upload file %s (%d)", session->fname,
 				 ret);
 	}
+
+end:
+	return ret;
+}
+
+static int close_upload_file(uint16_t session_id)
+{
+	struct session_entry *session;
+	int ret;
+
+	session = search_used_session(session_id);
+	if (session == NULL) {
+		sd_journal_print(LOG_ERR, "This session ID is not used (%d)", session_id);
+		ret = -ENOENT;
+		goto end;
+	}
+
+	ret = fclose(session->file);
+	if (ret < 0) {
+		sd_journal_print(LOG_ERR, "Faild to close the upload file %s (%d)", session->fname,
+				 ret);
+	}
+
+	release_session(session);
 
 end:
 	return ret;
@@ -275,6 +315,28 @@ end:
 		send_upload_data_err_reply(packet, command_id, ret, session_id, offset, size);
 	}
 
+	return ret;
+}
+
+int file_upload_close_cmd(uint8_t command_id, csp_packet_t *packet)
+{
+	int ret = 0;
+	uint16_t session_id = 0;
+
+	if (packet->length != UPLOAD_CLOSE_CMD_SIZE) {
+		sd_journal_print(LOG_ERR, "Invalide command size: %d", packet->length);
+		ret = -EINVAL;
+		goto end;
+	}
+
+	session_id = le16toh(*(unsigned short *)&packet->data[UPLOAD_SID_OFFSET]);
+
+	sd_journal_print(LOG_INFO, "Upload (CLOSE) command (session_id: %d)", session_id);
+
+	ret = close_upload_file(session_id);
+
+end:
+	send_upload_close_reply(packet, command_id, ret, session_id);
 	return ret;
 }
 

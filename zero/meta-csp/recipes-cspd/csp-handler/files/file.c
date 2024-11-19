@@ -22,7 +22,9 @@
 #define FILE_CMD_MIN_SIZE (1U)
 
 /* Command ID */
-#define FILE_UPLOAD_OPEN_CMD (2U)
+#define FILE_UPLOAD_OPEN_CMD  (2U)
+#define FILE_UPLOAD_DATA_CMD  (3U)
+#define FILE_UPLOAD_CLOSE_CMD (4U)
 
 static GQueue file_work_queue;
 static pthread_t file_work;
@@ -50,6 +52,12 @@ static void csp_file_work(csp_packet_t *packet)
 	switch (command_id) {
 	case FILE_UPLOAD_OPEN_CMD:
 		file_upload_open_cmd(command_id, packet);
+		break;
+	case FILE_UPLOAD_DATA_CMD:
+		file_upload_data_cmd(command_id, packet);
+		break;
+	case FILE_UPLOAD_CLOSE_CMD:
+		file_upload_close_cmd(command_id, packet);
 		break;
 	default:
 		sd_journal_print(LOG_ERR, "Unkown command code: %d", command_id);
