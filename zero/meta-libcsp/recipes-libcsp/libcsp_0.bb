@@ -4,6 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=2915dc85ab8fd26629e560d023ef175c"
 SRCREV = "${AUTOREV}"
 SRCBRANCH = "develop"
 SRC_URI = "git://github.com/libcsp/libcsp.git;protocol=https;branch=${SRCBRANCH};"
+SRC_URI += "file://0001-drivers-usart-Remove-exit-code-from-Linux-driver.patch"
 
 DEPENDS += "libsocketcan"
 
