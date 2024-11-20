@@ -1,0 +1,39 @@
+From 90316c0f7fe41d1eac1d38d24b8d381c94d63466 Mon Sep 17 00:00:00 2001
+From: Takuya Sasaki <takuya.sasaki@spacecubics.com>
+Date: Wed, 20 Nov 2024 11:15:38 +0900
+Subject: [PATCH] drivers: usart: Remove exit() code from Linux driver
+
+The Linux USART driver for libcsp calls `exit()` API the rx_thread if
+a read operation fails. This behavior terminates the entire process,
+even if communication via interfaces other than USART is still possible.
+Therefore, the exit() code will be removed.
+
+Signed-off-by: Takuya Sasaki <takuya.sasaki@spacecubics.com>
+---
+ src/drivers/usart/usart_linux.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/drivers/usart/usart_linux.c b/src/drivers/usart/usart_linux.c
+index 48aa3d2..46d6539 100644
+--- a/src/drivers/usart/usart_linux.c
++++ b/src/drivers/usart/usart_linux.c
+@@ -38,7 +38,7 @@ static void * usart_rx_thread(void * arg) {
+ 	uint8_t * cbuf = malloc(CBUF_SIZE);
+ 	if (cbuf == NULL) {
+ 		csp_print("%s: malloc() failed, returned NULL\n", __func__);
+-		exit(1);
++		return NULL;
+ 	}
+ 
+ 	// Receive loop
+@@ -46,7 +46,7 @@ static void * usart_rx_thread(void * arg) {
+ 		int length = read(ctx->fd, cbuf, CBUF_SIZE);
+ 		if (length <= 0) {
+ 			csp_print("%s: read() failed, returned: %d\n", __func__, length);
+-			exit(1);
++			return NULL;
+ 		}
+ 		ctx->rx_callback(ctx->user_data, cbuf, length, NULL);
+ 	}
+-- 
+2.34.1
