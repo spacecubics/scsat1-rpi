@@ -21,6 +21,9 @@ SRC_URI = "file://main.c \
            file://upload.h \
            file://shell.c \
            file://shell.h \
+           file://system.c \
+           file://system.h \
+           file://version.h \
            file://cspd.h \
            file://Makefile \
            file://LICENSE"
