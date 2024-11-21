@@ -13,6 +13,7 @@
 #define PORT_SHELL  (10U) /* for shell command */
 #define PORT_HWTEST (11U) /* for HWTEST program */
 #define PORT_FILE   (13U) /* for file related command */
+#define PORT_SYSTEM (16U) /* For system related command */
 
 #define CSP_COMMAND_ID_OFFSET  (0U)
 #define CSP_UNKNOWN_COMMAND_ID (255U)

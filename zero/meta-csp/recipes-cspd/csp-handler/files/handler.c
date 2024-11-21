@@ -13,6 +13,7 @@
 #include "hwtest.h"
 #include "file.h"
 #include "shell.h"
+#include "system.h"
 
 void *handle_csp_packet(void *param)
 {
@@ -38,6 +39,9 @@ void *handle_csp_packet(void *param)
 				break;
 			case PORT_FILE:
 				file_handler(packet);
+				break;
+			case PORT_SYSTEM:
+				system_handler(packet);
 				break;
 			default:
 				csp_service_handler(packet);
