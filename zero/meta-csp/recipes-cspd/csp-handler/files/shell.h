@@ -18,6 +18,7 @@ struct shell_err_reply_telemetry {
 struct shell_cmd_reply_telemetry {
 	uint8_t telemetry_id;
 	uint32_t error_code;
+	uint32_t seq_number;
 	uint8_t result[SHELL_RESULT_BUF_SIZE];
 } __attribute__((__packed__));
 
