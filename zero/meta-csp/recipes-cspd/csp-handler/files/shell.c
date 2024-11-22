@@ -59,6 +59,19 @@ void send_cmd_reply(csp_packet_t *packet, uint8_t command_id, int err_code, uint
 	csp_sendto_reply(clone, clone, CSP_O_SAME);
 }
 
+void send_shell_err_reply(csp_packet_t *packet, uint8_t command_id, int err_code)
+{
+	struct shell_err_reply_telemetry tlm;
+
+	tlm.telemetry_id = command_id;
+	tlm.error_code = htole32(err_code);
+
+	memcpy(packet->data, &tlm, sizeof(tlm));
+	packet->length = sizeof(tlm);
+
+	csp_sendto_reply(packet, packet, CSP_O_SAME);
+}
+
 static void shell_cmd(uint8_t command_id, csp_packet_t *packet)
 {
 	int ret;
@@ -175,7 +188,7 @@ static void csp_shell_work(csp_packet_t *packet)
 
 reply:
 	if (ret < 0) {
-		send_cmd_reply(packet, command_id, ret, NULL);
+		send_shell_err_reply(packet, command_id, ret);
 	}
 
 end:
