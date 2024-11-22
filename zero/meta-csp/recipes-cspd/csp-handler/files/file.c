@@ -29,6 +29,19 @@
 static GQueue file_work_queue;
 static pthread_t file_work;
 
+void send_err_reply(csp_packet_t *packet, uint8_t command_id, int err_code)
+{
+	struct file_err_reply_telemetry tlm;
+
+	tlm.telemetry_id = command_id;
+	tlm.error_code = htole32(err_code);
+
+	memcpy(packet->data, &tlm, sizeof(tlm));
+	packet->length = sizeof(tlm);
+
+	csp_sendto_reply(packet, packet, CSP_O_SAME);
+}
+
 static void csp_file_work(csp_packet_t *packet)
 {
 	int ret = 0;
@@ -44,7 +57,7 @@ static void csp_file_work(csp_packet_t *packet)
 		sd_journal_print(LOG_ERR, "Invalide command size: %d", packet->length);
 		ret = -EINVAL;
 		command_id = CSP_UNKNOWN_COMMAND_ID;
-		goto free;
+		goto reply;
 	}
 
 	command_id = packet->data[CSP_COMMAND_ID_OFFSET];
@@ -66,8 +79,9 @@ static void csp_file_work(csp_packet_t *packet)
 		break;
 	}
 
-free:
+reply:
 	if (ret < 0) {
+		send_err_reply(packet, command_id, ret);
 	}
 
 end:
