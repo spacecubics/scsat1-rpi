@@ -34,7 +34,8 @@
 static GQueue shell_work_queue;
 static pthread_t shell_work;
 
-void send_cmd_reply(csp_packet_t *packet, uint8_t command_id, int err_code, uint8_t *result)
+void send_cmd_reply(csp_packet_t *packet, uint8_t command_id, int err_code, uint32_t seq_number,
+		    uint8_t *result)
 {
 	struct shell_cmd_reply_telemetry tlm;
 	csp_packet_t *clone;
@@ -46,7 +47,8 @@ void send_cmd_reply(csp_packet_t *packet, uint8_t command_id, int err_code, uint
 	clone = csp_buffer_clone(packet);
 
 	tlm.telemetry_id = command_id;
-	tlm.error_code = err_code;
+	tlm.error_code = htole32(err_code);
+	tlm.seq_number = htole32(seq_number);
 	if (result == NULL) {
 		memset(tlm.result, 0, SHELL_RESULT_BUF_SIZE);
 	} else {
@@ -85,6 +87,7 @@ static void shell_cmd(uint8_t command_id, csp_packet_t *packet)
 	int nfds;
 	size_t rsize;
 	uint8_t reply_count = 0;
+	static uint32_t seq_number = 0;
 
 	if (packet->length != SHELL_EXEC_CMD_MIN_SIZE) {
 		sd_journal_print(LOG_ERR, "Invalide command size: %d", packet->length);
@@ -127,12 +130,13 @@ static void shell_cmd(uint8_t command_id, csp_packet_t *packet)
 		if (rsize <= 0) {
 			if (reply_count == 0) {
 				strcpy(result, "No output");
-				send_cmd_reply(packet, command_id, rsize, (uint8_t *)result);
+				send_cmd_reply(packet, command_id, rsize, seq_number,
+					       (uint8_t *)result);
 				sd_journal_print(LOG_DEBUG, "Send reply (No output)");
 			}
 			break;
 		}
-		send_cmd_reply(packet, command_id, 0, (uint8_t *)result);
+		send_cmd_reply(packet, command_id, 0, seq_number, (uint8_t *)result);
 		memset(result, 0, sizeof(result));
 		reply_count++;
 		sd_journal_print(LOG_DEBUG, "Send reply %d times", reply_count);
@@ -144,8 +148,10 @@ close:
 
 end:
 	if (ret < 0) {
-		send_cmd_reply(packet, command_id, ret, NULL);
+		send_cmd_reply(packet, command_id, ret, seq_number, NULL);
 	}
+
+	seq_number++;
 
 	/*
 	 * Since the reply uses a clone for the response, the original is released manually.
