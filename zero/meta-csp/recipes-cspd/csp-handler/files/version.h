@@ -6,4 +6,4 @@
 
 #pragma once
 
-#define CSPD_VERSION "0.3.0"
+#define CSPD_VERSION "1.0.0"
