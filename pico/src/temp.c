@@ -14,11 +14,6 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(temp, LOG_LEVEL_DBG);
 
-#define DEV_ADDR   (0x4e)
-#define START_ADDR (0x00)
-#define RESOLUTION (0.0625f)
-#define BIT_SHIFT  (4)
-
 int get_temp(float *temp) {
 
 	const struct device *const temp_sensor = DEVICE_DT_GET_ANY(lm75);
