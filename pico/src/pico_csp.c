@@ -91,6 +91,7 @@ static void server(void)
 				int result = get_temp(&temp);
 				if (result < 0) {
 					LOG_ERR("Failed to get temperature");
+					csp_buffer_free(packet);
 				} else {
 					LOG_DBG("Temperature: %.2f℃", (double)temp);
 					memcpy(packet->data, &temp, sizeof(temp));
