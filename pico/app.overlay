@@ -2,8 +2,8 @@
 	status = "okay";
 	clock-frequency = <100000>;
 
-	lm75@4c{
+	lm75@4e{
 		compatible = "lm75";
-		reg = <0x4C>;
+		reg = <0x4E>;
 	};
 };
