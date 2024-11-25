@@ -1,0 +1,9 @@
+&i2c0 {
+	status = "okay";
+	clock-frequency = <100000>;
+
+	lm75@4c{
+		compatible = "lm75";
+		reg = <0x4C>;
+	};
+};
