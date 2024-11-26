@@ -93,7 +93,7 @@ static void server(void)
 					LOG_ERR("Failed to get temperature");
 					csp_buffer_free(packet);
 				} else {
-					LOG_DBG("Temperature: %.2f℃", (double)temp);
+					LOG_DBG("Temperature: %.2f celsius", (double)temp);
 					memcpy(packet->data, &temp, sizeof(temp));
 					packet->length = sizeof(temp);
 					csp_send(conn, packet);
