@@ -1,0 +1,17 @@
+/*
+ * Device tree overlay for disable-wifi
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = <&sdio>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+};
