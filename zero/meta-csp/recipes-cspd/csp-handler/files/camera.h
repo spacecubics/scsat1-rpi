@@ -8,6 +8,15 @@
 
 #include <csp/csp.h>
 
+#define CAMERA_WIDTH  1920
+#define CAMERA_HEIGHT 1200
+#define CAMERA_DEFAULT_BRIGTHNESS 1.0
+
+#define CAM_FRAME_PATH      "/storageA/photo"
+#define CAM_FRAME_PREFIX    "frame"
+#define CAM_FRAME_EXTENSION "dng"
+#define CAM_FRAME_TIMEOUT   4
+
 struct hwtest_cam_telemetry {
 	uint8_t telemetry_id;
 	uint16_t frame_count;

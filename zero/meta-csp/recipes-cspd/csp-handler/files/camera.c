@@ -12,9 +12,7 @@
 #include <systemd/sd-journal.h>
 #include "cspd.h"
 #include "utils.h"
-
-#define CAM_FRAME_PATH   "/storageA/photo"
-#define CAM_FRAME_PREFIX "frame"
+#include "camera/capture_raw.h"
 
 static int init_photo_dir(void)
 {
@@ -48,22 +46,7 @@ end:
 
 static int capture_frame(void)
 {
-	static uint16_t seq = 1;
-	char fname[128];
-	char cam_cmd[256];
-	int ret;
-
-	snprintf(fname, sizeof(fname), "%s/frame-%03d.bin", CAM_FRAME_PATH, seq);
-	snprintf(cam_cmd, sizeof(cam_cmd), "cam -c 1 --capture=1 --file=%s &",
-		 fname);
-
-	ret = system(cam_cmd);
-
-	if (ret == 0) {
-		seq++;
-	}
-
-	return ret;
+	return captureRawImage();
 }
 
 static int get_frame_file_count(uint16_t *count)
