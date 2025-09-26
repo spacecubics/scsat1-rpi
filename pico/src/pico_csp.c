@@ -8,6 +8,7 @@
 #include <zephyr/kernel.h>
 #include <csp/csp.h>
 #include <csp/drivers/usart.h>
+#include <math.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(csp, CONFIG_MAIN_LOG_LEVEL);
@@ -88,16 +89,20 @@ static void server(void)
 			switch (csp_conn_dport(conn)) {
 			case PORT_T:
 				float temp;
+				int8_t status;
 				int result = get_temp(&temp);
 				if (result < 0) {
 					LOG_ERR("Failed to get temperature");
-					csp_buffer_free(packet);
+					temp = NAN;
+					status = -1;
 				} else {
-					LOG_DBG("Temperature: %.2f℃", (double)temp);
-					memcpy(packet->data, &temp, sizeof(temp));
-					packet->length = sizeof(temp);
-					csp_send(conn, packet);
+					LOG_DBG("Temperature: %.2f celsius", (double)temp);
+					status = 0;
 				}
+				packet->data[0] = status;
+				memcpy(packet->data + 1, &temp, sizeof(temp));
+				packet->length = 1 + sizeof(temp);
+				csp_send(conn, packet);
 			default:
 				csp_service_handler(packet);
 				break;
